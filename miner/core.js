@@ -13,16 +13,23 @@ var twitter = new twitter({
 var search = "trump"
 
 let tweeets = []
-while ( tweeets.length <= 100 ) {
+// let i = 0;
+// while ( tweeets.length <= 100 ) {
+// console.log(i)
+// i++
 twitter.stream('statuses/filter', { track: search }, function (stream) {
         stream.on('data', function (tweet) {
             tweeets.push(tweet.text)
-            console.log(tweeets.length)
+            console.log(tweet.text)
+            if(tweeets.length === 3) {
+                console.log("closing stream")
+                stream.destroy();
+            }
         });
         stream.on('error', function (error) {
         });
 });
-}
+// }
     
 
 
