@@ -1,5 +1,5 @@
 var twitter = require('twitter');
-var oauth = require('oauth.js');
+// var oauth = require('oauth.js');
 
 
 
@@ -12,14 +12,19 @@ var twitter = new twitter({
 
 var search = "trump"
 
-//Stream data
+let tweeets = []
+while ( tweeets.length <= 100 ) {
 twitter.stream('statuses/filter', { track: search }, function (stream) {
-    stream.on('data', function (tweet) {
-        console.log(tweet.text);
-    });
-    stream.on('error', function (error) {
-    });
+        stream.on('data', function (tweet) {
+            tweeets.push(tweet.text)
+            console.log(tweeets.length)
+        });
+        stream.on('error', function (error) {
+        });
 });
+}
+    
+
 
 
 // var urlLink = 'https://api.twitter.com/1.1/statuses/update.json';
