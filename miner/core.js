@@ -1,5 +1,4 @@
 var twitter = require('twitter');
-// var oauth = require('oauth.js');
 
 
 
@@ -10,30 +9,29 @@ var twitter = new twitter({
     access_token_secret: 'ZyQRmrvGoYDgid3Syxaq18vIGvcB6nJYu3ejlRFWguds8'
 });
 
-var search = "trump"
+const tweetsloader = ( input ) => {
 
-let tweeets = []
-// let i = 0;
-// while ( tweeets.length <= 100 ) {
-// console.log(i)
-// i++
-twitter.stream('statuses/filter', { track: search }, function (stream) {
-        stream.on('data', function (tweet) {
-            tweeets.push(tweet.text)
-            console.log(tweet.text)
-            if(tweeets.length === 3) {
-                console.log("closing stream")
-                stream.destroy();
-            }
-        });
-        stream.on('error', function (error) {
-        });
-});
-// }
+    var search = input
+
+    let tweeets = []
+
+    twitter.stream('statuses/filter', { track: search }, function (stream) {
+            stream.on('data', function (tweet) {
+                tweeets.push(tweet.text)
+                console.log(tweeets)
+                if(tweeets.length === 100) {
+                    stream.destroy();
+                    return tweeets
+                }
+            });
+            stream.on('error', function (error) {
+            });
+    }); 
+}
     
 
 
-
+console.log(tweetsloader("trump"))
 // var urlLink = 'https://api.twitter.com/1.1/statuses/update.json';
 
 // var twitterStatus = "Sample tweet";
