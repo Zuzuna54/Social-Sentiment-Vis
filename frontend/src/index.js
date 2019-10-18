@@ -1,1 +1,0 @@
-import tweetsLoader from "./sentiment";

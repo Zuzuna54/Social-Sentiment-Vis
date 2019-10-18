@@ -1,53 +1,33 @@
 {
-  "name": "social-senttiment",
+  "name": "ssav",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.common.js",
+  "main": "app.js",
   "scripts": {
-    "bundle": "webpack --config webpack.config.js",
-    "prestart": "npm run bundle",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "webpack:watch": "webpack --watch --config webpack.dev.js",
-    "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize"
+    "start": "node app.js",
+    "server": "nodemon app.js"
   },
-  "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "maintained node versions",
-    "not dead"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Zuzuna54/Cloud-Jumper-.git"
   },
-  "author": "Giorgi Giorgobiani",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Zuzuna54/Cloud-Jumper-/issues"
   },
   "homepage": "https://github.com/Zuzuna54/Cloud-Jumper-#readme",
   "dependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "@google-cloud/language": "^3.5.0",
-    "autoprefixer": "^9.6.5",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "d3": "^5.12.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "fibers": "^4.0.1",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.12.0",
-    "path": "^0.12.7",
-    "postcss-loader": "^3.0.0",
-    "pug": "^2.0.4",
-    "sass": "^1.23.0",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2",
-    "webpack-merge": "^4.2.2"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
