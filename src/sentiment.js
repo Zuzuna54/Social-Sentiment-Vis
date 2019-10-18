@@ -50,11 +50,14 @@ async function quickstart(input) {
     const [result] = await client.analyzeSentiment({ document: document });
     const sentiment = result.documentSentiment;
 
-    console.log(`Text: ${text}`);
-    console.log(`Sentiment score: ${sentiment.score}`);
-    console.log(`Sentiment magnitude: ${sentiment.magnitude}`);
+    // console.log(`Text: ${text}`);
+    // console.log(`Sentiment score: ${sentiment.score}`);
+    // console.log(`Sentiment magnitude: ${sentiment.magnitude}`);
+    const output = { text: text, sentimentScore: sentiment.score, sentimentMagnitude: sentiment.magnitude}
+    // console.log(output);
+    return output
 }
 
 
-console.log(tweetsLoader("trump"))
+console.log(quickstart("trump"))
  
