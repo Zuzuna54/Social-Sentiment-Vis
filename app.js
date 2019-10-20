@@ -14,10 +14,10 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve(__dirname + '/frontend/index.html'));
 }); 
 
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// app.use("/api/tweets", tweets )
 
 const port = process.env.PORT || 5000;
 
