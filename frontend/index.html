@@ -5,56 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-    
-        body {
-            font: 13px Helvetica, Arial;
-        }
-    
-        form {
-            background: #000;
-            padding: 3px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    
-        form input {
-            border: 0;
-            padding: 10px;
-            width: 90%;
-            margin-right: .5%;
-        }
-    
-        form button {
-            width: 9%;
-            background: rgb(130, 224, 255);
-            border: none;
-            padding: 10px;
-        }
-    
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-    
-        #messages li {
-            padding: 5px 10px;
-        }
-    
-        #messages li:nth-child(odd) {
-            background: #eee;
-        }
-    </style>
+    <script src="https://d3js.org/d3.v4.js" charset="utf-8"></script>
 </head>
 <body>
     <div>maybe i need a break or something ?</div>
     <div> or maybe i should be </div>
+    <svg width="160" height="180">
+        <rect x="30" width="20" height="40" fill="steelblue"></rect>
+        <rect x="55" width="20" height="90" fill="steelblue"></rect>
+        <rect x="80" width="20" height="30" fill="steelblue"></rect>
+        <rect x="105" width="20" height="60" fill="steelblue"></rect>
+    </svg>
+    <script>
+    		< !--Our D3 code will go here. -- >
+    		var ratData = [40, 90, 30, 60];
+
+        d3.selectAll("rect")
+            .data(ratData)
+            .attr("height", function (d) {
+                return d;
+            });
+    </script>
 </body>
 </html>

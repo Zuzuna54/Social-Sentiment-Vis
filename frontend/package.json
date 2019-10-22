@@ -30,7 +30,6 @@
   "dependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
-    "@google-cloud/language": "^3.5.0",
     "autoprefixer": "^9.6.5",
     "babel-loader": "^8.0.6",
     "child_process": "^1.0.2",
