@@ -1,3 +1,32 @@
 
+body {
+  background-image: url("https://www.unisyscat.de/fileadmin/_processed_/9/0/csm_shutterstock_670866355_3840px_c_0312d8b342.jpg");
+  color: white;
+  width: 100%;
+}
+.search {
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+.main-container { 
+    display: flex;
 
+}
+.chart {
+    width: 80%;
+    height: 100%;
+}
+
+.main-info {
+    width: 20%;
+    height: 100%;
+}
+audio:active {
+    outline: none;
+}
+audio:focus {
+    outline: none;
+}
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtYWluLmNzcyIsInNvdXJjZXNDb250ZW50IjpbXSwic291cmNlUm9vdCI6IiJ9*/

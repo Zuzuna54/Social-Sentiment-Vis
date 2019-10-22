@@ -6,25 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://d3js.org/d3.v4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./dist/main.js"></script>
+    <link rel="stylesheet" href="./dist/main.css" />   
+   
 </head>
 <body>
-    <div>maybe i need a break or something ?</div>
-    <div> or maybe i should be </div>
-    <svg width="160" height="180">
-        <rect x="30" width="20" height="40" fill="steelblue"></rect>
-        <rect x="55" width="20" height="90" fill="steelblue"></rect>
-        <rect x="80" width="20" height="30" fill="steelblue"></rect>
-        <rect x="105" width="20" height="60" fill="steelblue"></rect>
-    </svg>
-    <script>
-    		< !--Our D3 code will go here. -- >
-    		var ratData = [40, 90, 30, 60];
-
-        d3.selectAll("rect")
-            .data(ratData)
-            .attr("height", function (d) {
-                return d;
-            });
-    </script>
+    <audio loop autoplay controls id="my_audio"  src="./public/Toby Tech - No More.mp3" type="audio/mpeg"></audio>
+     <div class="search"> 
+        <div class="title-1"> Type in the Search-Word </div> 
+        <div class="title-2"> To Get Most Recent Tweets </div> 
+    </div>
+    <div class="main-container">
+        <div class="chart">
+            this is side text explaining everything
+        </div>
+        <div class="main-info">
+            this is the chart container
+        </div>
+    </div>
+  
+ 
 </body>
 </html>
