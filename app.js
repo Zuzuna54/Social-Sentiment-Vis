@@ -8,7 +8,7 @@ var twitter = require('twitter');
 
 
 app.get('/tweets', function (req, res) {
-    tweetsLoader("trump");
+    tweetsLoader("trump", 100);
     return setTimeout(function(){ res.json(tweeets);}, 500)
 }); 
 
@@ -51,7 +51,7 @@ async function quickstart(input) {
 }
 
 let tweeets = [];
-const tweetsLoader = (input, res) => {
+const tweetsLoader = (input, numTweets) => {
     var search = input;
     var output = [];
     
@@ -63,7 +63,7 @@ const tweetsLoader = (input, res) => {
             // res.send(tweet);
             console.log(tweeets)
             tweeets = output;
-            if (tweeets.length >= 10) {
+            if (tweeets.length >= numTweets) {
                 stream.destroy();
                 output = [];
                 return tweeets;
@@ -76,3 +76,7 @@ const tweetsLoader = (input, res) => {
 console.log(tweetsLoader("trump"))
 // setTimeout( function(){console.log(tweeets)}, 1000)
 console.log(tweeets)
+
+
+// maybe i need to add another function here to be able to pass the tweets and timly resolve the promises returned by google api befrore sending everything up in the frnt end ?
+// or maybe i can time out the api calls in a custom way so i can check in the front end if every one of them are resolved and then kill the stream
