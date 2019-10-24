@@ -1,5 +1,5 @@
 
-import { tweetStream} from "./util"
+import { tweetStream } from "./util"
 
 
 document.addEventListener("DOMContentLoaded", () => {

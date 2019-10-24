@@ -4,6 +4,7 @@ const outputDir = "./dist";
 
 module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"), //
+    // entry: "./src/index.html", //
     output: {
         path: path.join(__dirname, outputDir),
         filename: "[name].js",
