@@ -54,24 +54,27 @@ let tweeets = [];
 const tweetsLoader = (input, numTweets) => {
     var search = input;
     var output = [];
-    
-    twitter.stream('statuses/filter', { track: search }, function (stream) {
-        stream.on('data', function (tweet) {
-            // console.log(tweet.extended_tweet)
-            let text = quickstart(tweet.extended_tweet.full_text)
-            output.push({date: tweet.created_at, user: { screen_name: tweet.user.screen_name, name: tweet.user.name}, text: text });
-            // res.send(tweet);
-            console.log(tweeets)
-            tweeets = output;
-            if (tweeets.length >= numTweets) {
-                stream.destroy();
-                output = [];
-                return tweeets;
-            }
+
+    if(input !== undefined && numTweets !== undefined) {
+        twitter.stream('statuses/filter', { track: search }, function (stream) {
+            stream.on('data', function (tweet) {
+                // console.log(tweet.extended_tweet)
+                let text =  tweet.extended_tweet.full_text
+                // let text = quickstart(tweet.extended_tweet.full_text)
+                output.push({date: tweet.created_at, user: { screen_name: tweet.user.screen_name, name: tweet.user.name}, text: text });
+                // res.send(tweet);
+                console.log(tweeets)
+                tweeets = output;
+                if (tweeets.length >= numTweets) {
+                    stream.destroy();
+                    output = [];
+                    return tweeets;
+                }
+            });
+            stream.on('error', function (error) {
+            });
         });
-        stream.on('error', function (error) {
-        });
-    });
+    }
 }
 console.log(tweetsLoader("trump"))
 // setTimeout( function(){console.log(tweeets)}, 1000)
