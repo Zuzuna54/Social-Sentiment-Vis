@@ -11,8 +11,9 @@ app.get('/tweets', function (req, res) {
     tweetsLoader("trump", 100);
     return setTimeout(function(){ res.json(tweeets);}, 500)
 }); 
-app.get('/', function (req, res) {
-    res.sendFile("/frontend/index.html", { root: __dirname })
+app.use(express.static(__dirname + "/frontend"))
+app.use('/', function (req, res) {
+    res.sendFile("./frontend/index.html", { root: __dirname })
 }); 
 
 const port = process.env.PORT || 5000;

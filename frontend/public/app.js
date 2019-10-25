@@ -2,4 +2,4 @@
 
 import foo from './foo';
 
-// document.getElementById('module-name').innerText = foo.name;
+document.getElementById('module-name').innerText = foo.name;
