@@ -1,3 +1,10 @@
+:root{
+	/* --title-font: Georgia, 'Times New Roman', Times, serif; */
+	--title-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	--title-font-size: 18px;
+	--title-font-weight: 600;
+}
+
 
 body {
   background-image: url("https://www.unisyscat.de/fileadmin/_processed_/9/0/csm_shutterstock_670866355_3840px_c_0312d8b342.jpg");
@@ -22,6 +29,12 @@ body {
 .main-info {
     width: 20%;
     height: 100%;
+    align-items: center;
+    text-align: center;
+    margin-top: 400px;
+}
+.title-1{
+    font-size: 18px;
 }
 audio:active {
     outline: none;
@@ -34,7 +47,6 @@ audio:focus {
     justify-content: center;
 }
 .query-field{
-	/* border: none; */
 	outline: none;
 	cursor: text;
 	height: 90%;
