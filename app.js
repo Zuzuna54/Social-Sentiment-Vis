@@ -10,6 +10,7 @@ var twitter = require('twitter');
 app.get('/tweets', function (req, res) {
     tweetsLoader(req.query.queryStr, req.query.queryNum);
     return setTimeout(function(){ res.json(tweeets);}, 500)
+    
 }); 
 
 app.use(express.static(__dirname + "/frontend"))
@@ -57,8 +58,8 @@ const tweetsLoader = (input, numTweets) => {
     if(input !== undefined && numTweets !== undefined) {
         twitter.stream('statuses/filter', { track: search }, function (stream) {
             stream.on('data', function (tweet) {
-                let text =  tweet.extended_tweet.full_text
-                // let text = quickstart(tweet.extended_tweet.full_text)
+                // let text =  tweet.extended_tweet.full_text
+                let text = quickstart(tweet.extended_tweet.full_text)
                 output.push({date: tweet.created_at, user: { screen_name: tweet.user.screen_name, name: tweet.user.name}, text: text });
                 console.log(tweeets)
                 tweeets = output;

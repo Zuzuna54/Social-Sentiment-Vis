@@ -4,8 +4,6 @@ import queryField from "./query_field";
 
 document.addEventListener("DOMContentLoaded", () => {
     window.tweetStream = tweetStream;
-    console.log("this and that")
-
     const props = {}
     const search = document.getElementById("search");
     const title = document.getElementById("title-1");

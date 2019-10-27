@@ -80,23 +80,45 @@ const handleTyping = (event,props, queryInput) => {
         const obj = { queryStr: parts[0], queryNum: parseInt(parts[1]) };
         return obj
     } 
+    let tweets = [];
+    const call = setInterval(() => {
+        tweetStream(request())
+            .then(response => {
+                tweets = response;
+                // console.log(response); 
+                console.log(tweets);  
+            })  
+        if (tweets.length >= request().queryNum) {
+            clearInterval(call)
+        } 
+    }, 200);
+    // setInterval(() => {
+    //     console.log(tweets) 
+    // }, 500);
 
-    tweetStream(request())
-        .then(response => {
-            // while(response.length < request().queryNum) {
-            //     tweetStream(request()).then(response => {console.log(response)})
-            // }
-            console.log(response)
-            // const payload = {}
-            // payload.query = value
-            // payload.articles = response.articles
-            // return payload
-        })
-        // })
-        // .then(payload => processData(payload)) 
-        // .then((payload) => {
-        //     chart.render(payload)
-        // })
+    const stopCall = () => {
+        // console.log(tweets);
+        if(tweets.length >= request().queryNum){
+            clearInterval(call)
+        }
+    }
+
+    // tweetStream(request())
+    //     .then(response => {
+    //         // while(response.length < request().queryNum) {
+    //         //     tweetStream(request()).then(response => {console.log(response)})
+    //         // }
+    //         console.log(response)
+    //         // const payload = {}
+    //         // payload.query = value
+    //         // payload.articles = response.articles
+    //         // return payload
+    //     })
+    //     // })
+    //     // .then(payload => processData(payload)) 
+    //     // .then((payload) => {
+    //     //     chart.render(payload)
+    //     // })
 }
 
 
