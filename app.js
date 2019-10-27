@@ -8,9 +8,10 @@ var twitter = require('twitter');
 
 
 app.get('/tweets', function (req, res) {
-    tweetsLoader("trump", 100);
+    tweetsLoader(req.query.queryStr, req.query.queryNum);
     return setTimeout(function(){ res.json(tweeets);}, 500)
 }); 
+
 app.use(express.static(__dirname + "/frontend"))
 app.use('/', function (req, res) {
     res.sendFile("./frontend/index.html", { root: __dirname })
@@ -32,25 +33,19 @@ var twitter = new twitter({
 
 async function quickstart(input) {
     // Imports the Google Cloud client library
-    const language = require('@google-cloud/language');
-    
+    const language = require('@google-cloud/language');   
     // Instantiates a client
     const client = new language.LanguageServiceClient();
-    
     // The text to analyze
     const text = input;
-    
     const document = {
         content: text,
         type: 'PLAIN_TEXT',
     };
-    
     // Detects the sentiment of the text
     const [result] = await client.analyzeSentiment({ document: document });
-    const sentiment = result.documentSentiment;
-    
+    const sentiment = result.documentSentiment; 
     const output = { text: text, sentimentScore: sentiment.score, sentimentMagnitude: sentiment.magnitude }
-    // console.log(output)
     return output
 }
 
@@ -62,11 +57,9 @@ const tweetsLoader = (input, numTweets) => {
     if(input !== undefined && numTweets !== undefined) {
         twitter.stream('statuses/filter', { track: search }, function (stream) {
             stream.on('data', function (tweet) {
-                // console.log(tweet.extended_tweet)
                 let text =  tweet.extended_tweet.full_text
                 // let text = quickstart(tweet.extended_tweet.full_text)
                 output.push({date: tweet.created_at, user: { screen_name: tweet.user.screen_name, name: tweet.user.name}, text: text });
-                // res.send(tweet);
                 console.log(tweeets)
                 tweeets = output;
                 if (tweeets.length >= numTweets) {
@@ -80,10 +73,6 @@ const tweetsLoader = (input, numTweets) => {
         });
     }
 }
-console.log(tweetsLoader("trump"))
-// setTimeout( function(){console.log(tweeets)}, 1000)
-console.log(tweeets)
-
 
 // maybe i need to add another function here to be able to pass the tweets and timly resolve the promises returned by google api befrore sending everything up in the frnt end ?
 // or maybe i can time out the api calls in a custom way so i can check in the front end if every one of them are resolved and then kill the stream

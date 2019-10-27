@@ -2,7 +2,7 @@
 
 export const tweetStream = (data) => (
     $.ajax({
-        url: "/",
+        url: "/tweets",
         method: "GET",
         data: data
     })

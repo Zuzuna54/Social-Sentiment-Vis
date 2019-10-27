@@ -73,10 +73,19 @@ const clearInput = (queryInput, cycle) => () => {
 const handleTyping = (event,props, queryInput) => {
     event.preventDefault();
     // const chart = props.chart
-    // const value = queryInput.value;
+    const value = queryInput.value;
 
-    tweetStream(value)
+    const request = () => {
+        const parts = value.split(",");
+        const obj = { queryStr: parts[0], queryNum: parseInt(parts[1]) };
+        return obj
+    } 
+
+    tweetStream(request())
         .then(response => {
+            // while(response.length < request().queryNum) {
+            //     tweetStream(request()).then(response => {console.log(response)})
+            // }
             console.log(response)
             // const payload = {}
             // payload.query = value
