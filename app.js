@@ -9,8 +9,11 @@ var twitter = require('twitter');
 
 app.get('/tweets', function (req, res) {
     tweetsLoader(req.query.queryStr, req.query.queryNum);
-    return setTimeout(function(){ res.json(tweeets);}, 500)
-    
+        setTimeout(() => {
+            res.json(tweeets);
+        }, 500);    
+        tweeets = [];
+        
 }); 
 
 app.use(express.static(__dirname + "/frontend"))
@@ -32,23 +35,23 @@ var twitter = new twitter({
     access_token_secret: 'ZyQRmrvGoYDgid3Syxaq18vIGvcB6nJYu3ejlRFWguds8'
 });
 
-async function quickstart(input) {
-    // Imports the Google Cloud client library
-    const language = require('@google-cloud/language');   
-    // Instantiates a client
-    const client = new language.LanguageServiceClient();
-    // The text to analyze
-    const text = input;
-    const document = {
-        content: text,
-        type: 'PLAIN_TEXT',
-    };
-    // Detects the sentiment of the text
-    const [result] = await client.analyzeSentiment({ document: document });
-    const sentiment = result.documentSentiment; 
-    const output = { text: text, sentimentScore: sentiment.score, sentimentMagnitude: sentiment.magnitude }
-    return output
-}
+// async function quickstart(input) {
+//     // Imports the Google Cloud client library
+//     const language = require('@google-cloud/language');   
+//     // Instantiates a client
+//     const client = new language.LanguageServiceClient();
+//     // The text to analyze
+//     const text = input;
+//     const document = {
+//         content: text,
+//         type: 'PLAIN_TEXT',
+//     };
+//     // Detects the sentiment of the text
+//     const [result] = await client.analyzeSentiment({ document: document });
+//     const sentiment = result.documentSentiment; 
+//     const output = { text: text, sentimentScore: sentiment.score, sentimentMagnitude: sentiment.magnitude }
+//     return output
+// }
 
 let tweeets = [];
 const tweetsLoader = (input, numTweets) => {
@@ -58,10 +61,10 @@ const tweetsLoader = (input, numTweets) => {
     if(input !== undefined && numTweets !== undefined) {
         twitter.stream('statuses/filter', { track: search }, function (stream) {
             stream.on('data', function (tweet) {
-                // let text =  tweet.extended_tweet.full_text
-                let text = quickstart(tweet.extended_tweet.full_text)
+                let text =  tweet.extended_tweet.full_text
+                // let text = quickstart(tweet.extended_tweet.full_text)
                 output.push({date: tweet.created_at, user: { screen_name: tweet.user.screen_name, name: tweet.user.name}, text: text });
-                console.log(tweeets)
+                console.log(output)
                 tweeets = output;
                 if (tweeets.length >= numTweets) {
                     stream.destroy();

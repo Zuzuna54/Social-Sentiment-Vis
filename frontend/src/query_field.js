@@ -84,41 +84,23 @@ const handleTyping = (event,props, queryInput) => {
     const call = setInterval(() => {
         tweetStream(request())
             .then(response => {
+                if(response.length > tweets.length){
                 tweets = response;
-                // console.log(response); 
-                console.log(tweets);  
+                console.log(tweets); 
+                } 
+                if (tweets.length >= request().queryNum) {
+                    clearInterval(call)
+                } 
             })  
-        if (tweets.length >= request().queryNum) {
-            clearInterval(call)
-        } 
-    }, 200);
-    // setInterval(() => {
-    //     console.log(tweets) 
-    // }, 500);
+        
+    }, 500);
 
     const stopCall = () => {
-        // console.log(tweets);
         if(tweets.length >= request().queryNum){
             clearInterval(call)
         }
     }
 
-    // tweetStream(request())
-    //     .then(response => {
-    //         // while(response.length < request().queryNum) {
-    //         //     tweetStream(request()).then(response => {console.log(response)})
-    //         // }
-    //         console.log(response)
-    //         // const payload = {}
-    //         // payload.query = value
-    //         // payload.articles = response.articles
-    //         // return payload
-    //     })
-    //     // })
-    //     // .then(payload => processData(payload)) 
-    //     // .then((payload) => {
-    //     //     chart.render(payload)
-    //     // })
 }
 
 
