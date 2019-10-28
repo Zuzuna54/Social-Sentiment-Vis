@@ -1,11 +1,7 @@
 const express = require("express");
-const tweets = require("./routes/api/tweets");
 const bodyParser = require('body-parser');
-var path = require("path");
 const app = express();
-var http = require('http').createServer(app)
 var twitter = require('twitter');
-
 
 app.get('/tweets', function (req, res) {
     tweetsLoader(req.query.queryStr, req.query.queryNum);
@@ -22,10 +18,8 @@ app.use('/', function (req, res) {
 }); 
 
 const port = process.env.PORT || 5000;
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 var twitter = new twitter({
@@ -44,36 +38,35 @@ async function quickstart(input) {
         type: 'PLAIN_TEXT',
     };
     const [result] = await client.analyzeSentiment({ document: document });
-    // console.log(result)
     const sentiment = result.documentSentiment; 
     const output = { text: text, sentimentScore: sentiment.score, sentimentMagnitude: sentiment.magnitude }
-    console.log(output)
-    return output
+    return output;
 }
 
 let tweeets = [];
 const tweetsLoader = (input, numTweets) => {
     var search = input;
     var output = [];
-
+    
     if(input !== undefined && numTweets !== undefined) {
         twitter.stream('statuses/filter', { track: search }, function (stream) {
             stream.on('data', function (tweet) {
-                // let text =  tweet.extended_tweet.full_text
-                let promise = quickstart(tweet.extended_tweet.full_text)
-                let text = "";
-                // promise.then(res => { return res })
-                output.push({
-                    date: tweet.created_at,
-                    user: { screen_name: tweet.user.screen_name, name: tweet.user.name},
-                    text: promise.then(res => { return res })
+
+                let promise;
+                quickstart(tweet.extended_tweet.full_text).then(res => {
+                    promise = res;
+                    output.push({
+                        date: tweet.created_at,
+                        user: { screen_name: tweet.user.screen_name, name: tweet.user.name},
+                        text: promise
+                    });
                 });
-                console.log(output)
+
                 tweeets = output;
-                if (tweeets.length >= numTweets) {
+                if (output.length >= numTweets) {
                     stream.destroy();
                     output = [];
-                    return tweeets;
+                    tweeets = tweeets.slice(0, numTweets);
                 }
             });
             stream.on('error', function (error) {
@@ -81,6 +74,3 @@ const tweetsLoader = (input, numTweets) => {
         });
     }
 }
-
-// maybe i need to add another function here to be able to pass the tweets and timly resolve the promises returned by google api befrore sending everything up in the frnt end ?
-// or maybe i can time out the api calls in a custom way so i can check in the front end if every one of them are resolved and then kill the stream
