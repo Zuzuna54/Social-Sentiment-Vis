@@ -72,7 +72,6 @@ const clearInput = (queryInput, cycle) => () => {
 
 const handleTyping = (event,props, queryInput) => {
     event.preventDefault();
-    // const chart = props.chart
     const value = queryInput.value;
 
     const request = () => {
@@ -91,8 +90,7 @@ const handleTyping = (event,props, queryInput) => {
                 if (tweets.length >= request().queryNum) {
                     clearInterval(call)
                 } 
-            })  
-        
+            })   
     }, 500);
 
     const stopCall = () => {
@@ -100,7 +98,7 @@ const handleTyping = (event,props, queryInput) => {
             clearInterval(call)
         }
     }
-
+    
 }
 
 
