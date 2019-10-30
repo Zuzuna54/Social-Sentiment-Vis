@@ -79,19 +79,27 @@ const handleTyping = (event,props, queryInput) => {
         const obj = { queryStr: parts[0], queryNum: parseInt(parts[1]) };
         return obj
     } 
+
+
     let tweets = [];
     const call = setInterval(() => {
         tweetStream(request())
             .then(response => {
                 if(response.length > tweets.length){
-                tweets = response;
-                console.log(tweets); 
+                    tweets = response.slice(0, request().queryNum);
+                    console.log(tweets);
+                    for(let i = 0; i <tweets.length; i++){
+                        totalSent += tweets.tesxt.sentimentScore;
+                        console.log(totalSent / i + 1);  
+                    }
                 } 
                 if (tweets.length >= request().queryNum) {
                     clearInterval(call)
                 } 
             })   
     }, 500);
+
+    const totalSent = 0;
 
     const stopCall = () => {
         if(tweets.length >= request().queryNum){

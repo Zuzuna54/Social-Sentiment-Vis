@@ -60,9 +60,10 @@ const tweetsLoader = (input, numTweets) => {
                         user: { screen_name: tweet.user.screen_name, name: tweet.user.name},
                         text: promise
                     });
+                    tweeets = output;
+                    console.log(output);
                 });
 
-                tweeets = output;
                 if (output.length >= numTweets) {
                     stream.destroy();
                     output = [];
