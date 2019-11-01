@@ -1,5 +1,5 @@
 import { tweetStream } from "./util"
-
+import { tweetsRender } from "./chart_util";
 export default (props) => {
     const form = document.createElement("form");
     
@@ -87,14 +87,12 @@ const handleTyping = (event,props, queryInput) => {
             .then(response => {
                 if(response.length > tweets.length){
                     tweets = response.slice(0, request().queryNum);
-                    console.log(tweets);
-                    for(let i = 0; i <tweets.length; i++){
-                        totalSent += tweets.tesxt.sentimentScore;
-                        console.log(totalSent / i + 1);  
-                    }
+                    // console.log(tweets);
                 } 
                 if (tweets.length >= request().queryNum) {
                     clearInterval(call)
+                    clearInterval(tweetslog)
+                    console.log(tweets)
                 } 
             })   
     }, 500);
@@ -107,6 +105,19 @@ const handleTyping = (event,props, queryInput) => {
         }
     }
     
+   
+    // setInterval(() => {
+        //  d3.select('body')
+        // .selectAll('p')
+        // .data(tweets)
+        // .enter()
+        // .append('p') 
+        // .text(`${tweets.text}`);
+    // }, 50);
+    const tweetslog = setInterval(() => {
+        console.log(tweets)
+    }, 510);
+   
 }
 
 
