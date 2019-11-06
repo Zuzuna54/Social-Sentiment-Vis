@@ -105,19 +105,6 @@ const handleTyping = (event,props, queryInput) => {
         }
     }
     
-   
-    // setInterval(() => {
-        //  d3.select('body')
-        // .selectAll('p')
-        // .data(tweets)
-        // .enter()
-        // .append('p') 
-        // .text(`${tweets.text}`);
-    // }, 50);
-    const tweetslog = setInterval(() => {
-        console.log(tweets)
-    }, 510);
-   
 }
 
 
