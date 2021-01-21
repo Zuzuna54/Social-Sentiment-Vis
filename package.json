@@ -43,7 +43,7 @@
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
     "sentiment": "^5.0.2",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "style-loader": "^1.0.0",
     "twitter": "^1.7.1",
     "twitter-stream-api": "^0.5.2",
