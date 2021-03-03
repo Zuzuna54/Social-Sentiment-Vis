@@ -39,7 +39,7 @@
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
     "sentiment": "^5.0.2",
