@@ -47,7 +47,7 @@
     "style-loader": "^1.0.0",
     "twitter": "^1.7.1",
     "twitter-stream-api": "^0.5.2",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
